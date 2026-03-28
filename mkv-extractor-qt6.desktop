@@ -1,0 +1,17 @@
+#!/usr/bin/env xdg-open
+[Desktop Entry]
+Type=Application
+Name=MKV Extractor Qt6
+GenericName=MKV demuxer
+GenericName[de]=MKV-Demuxer
+GenericName[fr]=Démultiplexeur de MKV
+Comment=Extract tracks from mkv files
+Comment[de]=Extrahiere Spuren aus MKV-Dateien
+Comment[fr]=Extracteur de piste depuis des fichiers mkv
+TryExec=mkv-extractor-qt6
+Exec=mkv-extractor-qt6 %U
+Icon=/usr/share/icons/hicolor/scalable/apps/mkv-extractor-qt6.webp
+Categories=AudioVideo;AudioVideoEditing;
+Terminal=false
+StartupNotify=true
+MimeType=video/x-matroska;audio/x-matroska;application/x-matroska;video/x-mastroska-3d;audio/webm;video/webm;
