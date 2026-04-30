@@ -1140,7 +1140,7 @@
    </property>
    <widget class="QMenu" name="menuFichier">
     <property name="title">
-     <string>Fi&amp;le</string>
+     <string>&amp;File</string>
     </property>
     <addaction name="input_file"/>
     <addaction name="separator"/>
@@ -1150,7 +1150,7 @@
    </widget>
    <widget class="QMenu" name="menuActions">
     <property name="title">
-     <string>Actions</string>
+     <string>&amp;Actions</string>
     </property>
    </widget>
    <widget class="QMenu" name="menuAide">
@@ -1180,9 +1180,21 @@
     <addaction name="separator"/>
     <addaction name="about_qt"/>
    </widget>
+   <widget class="QMenu" name="menuLanguages">
+    <property name="title">
+     <string>&amp;Languages</string>
+    </property>
+    <addaction name="lang_en"/>
+    <addaction name="lang_fr"/>
+    <addaction name="lang_cs"/>
+    <addaction name="lang_de"/>
+    <addaction name="lang_es"/>
+    <addaction name="lang_it"/>
+    <addaction name="lang_tr"/>
+   </widget>
    <widget class="QMenu" name="menuOptions">
     <property name="title">
-     <string>Options</string>
+     <string>&amp;Options</string>
     </property>
     <widget class="QMenu" name="option_style">
      <property name="statusTip">
@@ -1213,15 +1225,10 @@
     <addaction name="separator"/>
     <addaction name="option_systray"/>
     <addaction name="option_minimise_systray"/>
-    <addaction name="separator"/>
-    <addaction name="lang_en"/>
-    <addaction name="lang_fr"/>
-    <addaction name="lang_cs"/>
-    <addaction name="lang_es"/>
-    <addaction name="lang_tr"/>
    </widget>
    <addaction name="menuFichier"/>
    <addaction name="menuActions"/>
+   <addaction name="menuLanguages"/>
    <addaction name="menuOptions"/>
    <addaction name="menuAide"/>
   </widget>
@@ -1254,7 +1261,7 @@
     </font>
    </property>
    <property name="windowTitle">
-    <string>&amp;Information feedback:</string>
+    <string>Information feedback:</string>
    </property>
    <attribute name="dockWidgetArea">
     <number>4</number>
@@ -1415,7 +1422,9 @@
   </action>
   <action name="about">
    <property name="icon">
-    <iconset theme="mkv-extractor-qt6"/>
+    <iconset theme="mkv-extractor-qt6" resource="MKVRessources.qrc">
+     <normaloff>:/icons/mkv-extractor-qt6.webp</normaloff>:/icons/mkv-extractor-qt6.webp
+    </iconset>
    </property>
    <property name="text">
     <string>&amp;About MKV Extractor Qt</string>
@@ -1428,6 +1437,9 @@
    </property>
    <property name="iconVisibleInMenu">
     <bool>true</bool>
+   </property>
+   <property name="shortcut">
+    <string notr="true">F11</string>
    </property>
   </action>
   <action name="mkv_info">
@@ -1467,6 +1479,9 @@
    <property name="menuRole">
     <enum>QAction::MenuRole::AboutQtRole</enum>
    </property>
+   <property name="shortcut">
+    <string notr="true">Ctrl+Shift+Q</string>
+   </property>
   </action>
   <action name="option_configuration_table">
    <property name="checkable">
@@ -1480,6 +1495,9 @@
    </property>
    <property name="statusTip">
     <string>View and edit the configuration values.</string>
+   </property>
+   <property name="shortcut">
+    <string notr="true">Ctrl+E</string>
    </property>
   </action>
   <action name="mkv_mkvmerge">
@@ -1561,6 +1579,9 @@
    <property name="statusTip">
     <string>Delete config file and don't save the new values for this time.</string>
    </property>
+   <property name="shortcut">
+    <string notr="true">Ctrl+R</string>
+   </property>
   </action>
   <action name="option_feedback">
    <property name="checkable">
@@ -1578,6 +1599,9 @@
    <property name="statusTip">
     <string>Show or hide the informations feedback box.</string>
    </property>
+   <property name="shortcut">
+    <string notr="true">Ctrl+I</string>
+   </property>
   </action>
   <action name="option_feedback_block">
    <property name="checkable">
@@ -1591,6 +1615,9 @@
    </property>
    <property name="statusTip">
     <string>Anchor or detach information feedback box.</string>
+   </property>
+   <property name="shortcut">
+    <string notr="true">Ctrl+B</string>
    </property>
   </action>
   <action name="option_aspect">
@@ -1609,6 +1636,9 @@
    <property name="statusTip">
     <string>Keep in memory the aspect and the position of the window for the next opening.</string>
    </property>
+   <property name="shortcut">
+    <string notr="true">Ctrl+K</string>
+   </property>
   </action>
   <action name="option_debug">
    <property name="checkable">
@@ -1623,6 +1653,9 @@
    <property name="statusTip">
     <string>Enable this option for view more informations in feedback box.</string>
    </property>
+   <property name="shortcut">
+    <string notr="true">F10</string>
+   </property>
   </action>
   <action name="option_systray">
    <property name="checkable">
@@ -1632,7 +1665,9 @@
     <bool>true</bool>
    </property>
    <property name="icon">
-    <iconset theme="mkv-extractor-qt6"/>
+    <iconset theme="mkv-extractor-qt6" resource="MKVRessources.qrc">
+     <normaloff>:/icons/mkv-extractor-qt6.webp</normaloff>:/icons/mkv-extractor-qt6.webp
+    </iconset>
    </property>
    <property name="text">
     <string>&amp;Use a system tray icon</string>
@@ -1642,6 +1677,9 @@
    </property>
    <property name="statusTip">
     <string>Display a system tray icon of the software.</string>
+   </property>
+   <property name="shortcut">
+    <string notr="true">Ctrl+T</string>
    </property>
   </action>
   <action name="mkvtoolnix">
@@ -1660,10 +1698,13 @@
    <property name="menuRole">
     <enum>QAction::MenuRole::AboutRole</enum>
    </property>
+   <property name="shortcut">
+    <string notr="true">Ctrl+U</string>
+   </property>
   </action>
   <action name="they_talk_about">
    <property name="icon">
-    <iconset theme="mkv-extractor-qt6"/>
+    <iconset theme="audio-volume-high"/>
    </property>
    <property name="text">
     <string>&amp;They talk about</string>
@@ -1673,6 +1714,9 @@
    </property>
    <property name="menuRole">
     <enum>QAction::MenuRole::AboutRole</enum>
+   </property>
+   <property name="shortcut">
+    <string notr="true">Ctrl+J</string>
    </property>
   </action>
   <action name="whatsup">
@@ -1687,6 +1731,9 @@
    </property>
    <property name="statusTip">
     <string>View the changelog file of the software.</string>
+   </property>
+   <property name="shortcut">
+    <string notr="true">Ctrl+G</string>
    </property>
   </action>
   <action name="option_hide_options">
@@ -1705,16 +1752,22 @@
    <property name="statusTip">
     <string>This option hides all options (like ffmpeg, mkvinfo...) who are not available.</string>
    </property>
+   <property name="shortcut">
+    <string notr="true">Ctrl+H</string>
+   </property>
   </action>
   <action name="option_softwares_locations">
    <property name="icon">
     <iconset theme="application-x-executable"/>
    </property>
    <property name="text">
-    <string>Softwares locations</string>
+    <string>&amp;Softwares locations</string>
    </property>
    <property name="statusTip">
     <string>Edit the executables locations.</string>
+   </property>
+   <property name="shortcut">
+    <string notr="true">Ctrl+L</string>
    </property>
   </action>
   <action name="option_minimise_systray">
@@ -1725,13 +1778,16 @@
     <iconset theme="window-minimise"/>
    </property>
    <property name="text">
-    <string>Minimize window when closed with X</string>
+    <string>&amp;Minimize window when closed with X</string>
    </property>
    <property name="toolTip">
     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Minimize the window when it closed with the X and when the systray is enabled.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
    </property>
    <property name="statusTip">
     <string>Minimize the window when it closed with the X and when the systray is enabled.</string>
+   </property>
+   <property name="shortcut">
+    <string notr="true">Ctrl+M</string>
    </property>
   </action>
   <action name="option_del_temp_files">
@@ -1745,10 +1801,13 @@
     <iconset theme="edit-delete"/>
    </property>
    <property name="text">
-    <string>Delete temporary files after work</string>
+    <string>Delete &amp;temporary files after work</string>
    </property>
    <property name="statusTip">
     <string>The temporary files are the extracted tracks before merge or before their convert.</string>
+   </property>
+   <property name="shortcut">
+    <string notr="true">Ctrl+D</string>
    </property>
   </action>
   <actiongroup name="actionGroupName2">
@@ -1775,7 +1834,10 @@
     <property name="statusTip">
      <string notr="true">Change the display language to English.</string>
     </property>
-   </action>
+    <property name="shortcut">
+    <string notr="true">Ctrl+1</string>
+   </property>
+  </action>
    <action name="lang_fr">
     <property name="checkable">
      <bool>true</bool>
@@ -1796,7 +1858,10 @@
     <property name="statusTip">
      <string notr="true">Traduit le logiciel en langue Française.</string>
     </property>
-   </action>
+    <property name="shortcut">
+    <string notr="true">Ctrl+2</string>
+   </property>
+  </action>
    <action name="lang_cs">
     <property name="checkable">
      <bool>true</bool>
@@ -1817,7 +1882,10 @@
     <property name="statusTip">
      <string notr="true">Změnit jazyk rozhraní na češtinu.</string>
     </property>
-   </action>
+    <property name="shortcut">
+    <string notr="true">Ctrl+3</string>
+   </property>
+  </action>
    <action name="lang_es">
     <property name="checkable">
      <bool>true</bool>
@@ -1838,7 +1906,58 @@
     <property name="statusTip">
      <string notr="true">Traduce el software al español.</string>
     </property>
-   </action>
+    <property name="shortcut">
+    <string notr="true">Ctrl+5</string>
+   </property>
+  </action>
+   <action name="lang_de">
+    <property name="checkable">
+     <bool>true</bool>
+    </property>
+    <property name="icon">
+     <iconset resource="MKVRessources.qrc">
+      <normaloff>:/img/DE.png</normaloff>:/img/DE.png</iconset>
+    </property>
+    <property name="text">
+     <string notr="true">Deutsche Version (Claude Code)</string>
+    </property>
+    <property name="iconText">
+     <string notr="true">Deutsche Version (Claude Code)</string>
+    </property>
+    <property name="toolTip">
+     <string notr="true">Deutsche Version (Claude Code)</string>
+    </property>
+    <property name="statusTip">
+     <string notr="true">Ändert die Sprache der Benutzeroberfläche auf Deutsch.</string>
+    </property>
+    <property name="shortcut">
+    <string notr="true">Ctrl+4</string>
+   </property>
+  </action>
+   <action name="lang_it">
+    <property name="checkable">
+     <bool>true</bool>
+    </property>
+    <property name="icon">
+     <iconset resource="MKVRessources.qrc">
+      <normaloff>:/img/IT.png</normaloff>:/img/IT.png</iconset>
+    </property>
+    <property name="text">
+     <string notr="true">Versione italiana (Claude Code)</string>
+    </property>
+    <property name="iconText">
+     <string notr="true">Versione italiana (Claude Code)</string>
+    </property>
+    <property name="toolTip">
+     <string notr="true">Versione italiana (Claude Code)</string>
+    </property>
+    <property name="statusTip">
+     <string notr="true">Cambia la lingua dell'interfaccia in italiano.</string>
+    </property>
+    <property name="shortcut">
+    <string notr="true">Ctrl+6</string>
+   </property>
+  </action>
    <action name="lang_tr">
     <property name="checkable">
      <bool>true</bool>
@@ -1859,7 +1978,10 @@
     <property name="statusTip">
      <string notr="true">Yazılımı Türkçe'ye çevirir.</string>
     </property>
-   </action>
+    <property name="shortcut">
+    <string notr="true">Ctrl+7</string>
+   </property>
+  </action>
   </actiongroup>
  </widget>
  <tabstops>
