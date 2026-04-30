@@ -2,9 +2,7 @@
 # MKV-Extractor-Qt6
 
 ## Version Française :
-
-![01](https://user-images.githubusercontent.com/48289933/138563147-9bf32ec0-674f-4fb1-88b2-377d43b9e5de.png)
-
+<img width="951" height="775" alt="Demo_FR" src="https://github.com/user-attachments/assets/4a98185e-c000-4288-8bcd-539f965656ff" />
 
 ### Principe de base :
 MKV Extracto Qt6 est écrit en **python 3 + Qt6** et fonction pour **Linux**.
@@ -43,9 +41,7 @@ Le logiciel permet de :
 *** ***
 
 ## English Version :
-
-![02](https://user-images.githubusercontent.com/48289933/138563203-081bf6b5-61d9-49bf-9d32-52494414c5b1.png)
-
+<img width="949" height="778" alt="Demo_EN" src="https://github.com/user-attachments/assets/0067f0c3-8251-4ab1-a0bb-f7567157872d" />
 
 ### Basic principle:
 MKV Extracto Qt6 is written in **python3 + Qt6** and works for **Linux**.
