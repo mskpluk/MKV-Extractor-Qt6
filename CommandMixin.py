@@ -79,7 +79,7 @@ class CommandMixin:
                     QIcon.fromTheme(
                         "mkv-extractor-qt6", QIcon(":/icons/mkv-extractor-qt6.webp")
                     ),
-                    "MKV Extracor Qt 5",
+                    "MKV Extractor Qt 6",
                     UseMMG,
                 )  # Création du bouton MKV Extracor Qt
 
