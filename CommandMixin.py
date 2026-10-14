@@ -3,7 +3,7 @@
 """Mixin de création des commandes d'extraction/conversion MKV."""
 
 import state
-from PySide6.QtCore import QFile, QFileInfo, QStorageInfo, QThread
+from PySide6.QtCore import QFile, QFileInfo, QStorageInfo, Qt, QThread
 from PySide6.QtWidgets import QCheckBox, QMessageBox, QPushButton
 from PySide6.QtGui import QIcon
 from QFileDialogCustom.QFileDialogCustom import QFileDialogCustom
