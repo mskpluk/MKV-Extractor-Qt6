@@ -1413,7 +1413,7 @@ File list:
     </message>
     <message>
         <location filename="../ui_MKVExtractorQt6.ui" line="1433"/>
-        <source>Display information about MKV Extractor Qt5.</source>
+        <source>Display information about MKV Extractor Qt6.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>

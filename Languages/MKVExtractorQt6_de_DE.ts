@@ -1473,8 +1473,8 @@ Dateiliste:
     </message>
     <message>
         <location filename="../ui_MKVExtractorQt6.ui" line="1433"/>
-        <source>Display information about MKV Extractor Qt5.</source>
-        <translation>Informationen über MKV Extractor Qt5 anzeigen.</translation>
+        <source>Display information about MKV Extractor Qt6.</source>
+        <translation>Informationen über MKV Extractor Qt6 anzeigen.</translation>
     </message>
     <message>
         <location filename="../ui_MKVExtractorQt6.ui" line="1453"/>

@@ -1487,8 +1487,8 @@ Dosya listesi:
     </message>
     <message>
         <location filename="../ui_MKVExtractorQt6.ui" line="1433"/>
-        <source>Display information about MKV Extractor Qt5.</source>
-        <translation>MKV Extractor Qt5 ile ilgili bilgileri görüntüleyin.</translation>
+        <source>Display information about MKV Extractor Qt6.</source>
+        <translation>MKV Extractor Qt6 ile ilgili bilgileri görüntüleyin.</translation>
     </message>
     <message>
         <location filename="../ui_MKVExtractorQt6.ui" line="1453"/>
