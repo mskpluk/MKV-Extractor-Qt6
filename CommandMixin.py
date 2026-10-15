@@ -113,7 +113,7 @@ class CommandMixin:
                 return
 
         ### Boucle traitant les pistes une à une
-        for Select in state.MKVDicoSelect.values():
+        for x, Select in state.MKVDicoSelect.items():
             # Select[0] : ID
             # Select[1] : Type de piste : Track, Attachment, Chapters, Global
             # Select[2] : Icône
@@ -121,6 +121,11 @@ class CommandMixin:
             # Select[4] : Nom de la piste
             # Select[5] : Info : fps, langue...
             # Select[6] : Info : codec
+
+            ## Le nom affiché peut être une valeur de remplacement (fréquence,
+            ## dimensions) : dans ce cas on n'écrit pas de nom dans le fichier.
+            Meta = state.TrackMeta.get(x, {})
+            TrackName = Select[4] if Meta.get("has_name") else ""
 
             ## Traitement des pistes vidéos, mise à jour de commandes
             if Select[2] == "video-x-generic":
@@ -139,7 +144,9 @@ class CommandMixin:
                 mkvmerge.extend(
                     [
                         "--track-name",
-                        "0:{0[4]}".format(Select),
+                        "0:{}".format(TrackName),
+                        "--language",
+                        "0:{}".format(Meta.get("language", "und")),
                         "--default-duration",
                         "0:{0[5]}".format(Select),
                         "--compression",
@@ -214,7 +221,7 @@ class CommandMixin:
                 # Code d'encapsulage
                 Temp = [
                     "--track-name",
-                    "0:{0[4]}".format(Select),
+                    "0:{}".format(TrackName),
                     "--language",
                     "0:{0[5]}".format(Select),
                     "--compression",
@@ -274,7 +281,7 @@ class CommandMixin:
                         mkvmerge.extend(
                             [
                                 "--track-name",
-                                "0:{0[4]}".format(Select),
+                                "0:{}".format(TrackName),
                                 "--language",
                                 "0:{0[5]}".format(Select),
                                 "--compression",
@@ -299,7 +306,7 @@ class CommandMixin:
                         mkvmerge.extend(
                             [
                                 "--track-name",
-                                "0:{0[4]}".format(Select),
+                                "0:{}".format(TrackName),
                                 "--language",
                                 "0:{0[5]}".format(Select),
                                 "--compression",
@@ -350,7 +357,7 @@ class CommandMixin:
                             mkvmerge.extend(
                                 [
                                     "--track-name",
-                                    "0:{0[4]}".format(Select),
+                                    "0:{}".format(TrackName),
                                     "--language",
                                     "0:{0[5]}".format(Select),
                                     "--compression",
@@ -374,7 +381,7 @@ class CommandMixin:
                             mkvmerge.extend(
                                 [
                                     "--track-name",
-                                    "0:{0[4]}".format(Select),
+                                    "0:{}".format(TrackName),
                                     "--language",
                                     "0:{0[5]}".format(Select),
                                     "--compression",
@@ -403,7 +410,7 @@ class CommandMixin:
                         mkvmerge.extend(
                             [
                                 "--track-name",
-                                "0:{0[4]}".format(Select),
+                                "0:{}".format(TrackName),
                                 "--language",
                                 "0:{0[5]}".format(Select),
                                 "--compression",
@@ -428,7 +435,7 @@ class CommandMixin:
                     mkvmerge.extend(
                         [
                             "--track-name",
-                            "0:{0[4]}".format(Select),
+                            "0:{}".format(TrackName),
                             "--language",
                             "0:{0[5]}".format(Select),
                             "--compression",

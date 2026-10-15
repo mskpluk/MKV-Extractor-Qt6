@@ -20,6 +20,10 @@ MKVDico = {}
 # Pistes sélectionnées
 MKVDicoSelect = {}
 
+# Infos des pistes qui ne tiennent pas dans le tableau : le nom affiché
+# est-il un vrai nom ou une valeur de remplacement, et la langue
+TrackMeta = {}
+
 # Langues disponibles dans les combobox
 MKVLanguages = []
 

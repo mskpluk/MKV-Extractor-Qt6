@@ -52,6 +52,7 @@ class TracksMixin:
         x = 0  # Sert à indiquer les numéros de lignes
         self.ComboBoxes = {}  # Dictionnaire listant les combobox
         state.MKVDico.clear()  # Mise au propre du dictionnaire
+        state.TrackMeta.clear()
 
         ### Désactivation des différentes options qui pourraient être activés
         self.ui.mkv_execute.setEnabled(False)
@@ -309,6 +310,13 @@ class TracksMixin:
             self.ui.mkv_tracks.setCellWidget(x, 4, self.ComboBoxes[x])
             self.ComboBoxes[x].addItems(ComboItems)
             self.ComboBoxes[x].setStatusTip(Text)
+
+            ## Le tableau affiche une valeur de remplacement quand la piste n'a
+            ## pas de nom ; il ne faut pas l'écrire dans le fichier de sortie.
+            state.TrackMeta[x] = {
+                "has_name": "track_name" in Track["properties"],
+                "language": Track["properties"].get("language", "und"),
+            }
 
             ## Ajout de la piste au dico
             state.MKVDico[x] = [ID, "Track", icone, "unknown", info1, info2, codec]
@@ -791,6 +799,10 @@ class TracksMixin:
         else:
             ## Mise à jour du texte dans le dico des pistes
             state.MKVDico[x][y] = self.ui.mkv_tracks.item(x, y).text()
+
+            ## Un nom saisi à la main est un vrai nom ; vidé, la piste n'en a plus
+            if y == 4 and x in state.TrackMeta:
+                state.TrackMeta[x]["has_name"] = bool(state.MKVDico[x][y])
 
             ## Mise à jour du texte dans le dico des pistes sélectionnées si la ligne est sélectionnée
             if self.ui.mkv_tracks.item(x, 1).checkState() == Qt.Checked:
