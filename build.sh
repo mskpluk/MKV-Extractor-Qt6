@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# sudo apt install pyside6-tools qt6-tools-dev-tools python3-pyside6
+# sudo apt install pyside6-tools qt6-tools-dev-tools python3-pyside6.qtcore python3-pyside6.qtgui python3-pyside6.qtwidgets
 
 # Script de build pour PySide6
 
@@ -108,7 +108,7 @@ APPDATA="$APPDIR/usr/share/mkv-extractor-qt6"
 check_dep() {
     python3 -c "import $1" 2>/dev/null || {
         echo "Erreur : le module Python '$1' n'est pas installé."
-        echo "  Sur Ubuntu/Debian : sudo apt install python3-pyside6"
+        echo "  Sur Ubuntu/Debian : sudo apt install python3-pyside6.qtcore python3-pyside6.qtgui python3-pyside6.qtwidgets"
         exit 1
     }
 }
