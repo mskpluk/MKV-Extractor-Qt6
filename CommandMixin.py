@@ -142,8 +142,12 @@ class CommandMixin:
             ## Traitement des pistes vidéos, mise à jour de commandes
             if Select[2] == "video-x-generic":
                 # Ajout du fichier à la liste
-                FileWithoutSlash = "{}_video_{}.mkv".format(
-                    Select[0], NamePart.replace("/", "-")
+                # mkvextract écrit un flux brut, pas un fichier Matroska :
+                # l'extension vient du codec, comme pour l'audio.
+                FileWithoutSlash = "{}_video_{}.{}".format(
+                    Select[0],
+                    NamePart.replace("/", "-"),
+                    Select[6] if Select[6].isalnum() else "mkv",
                 )
                 File = "{}/{}".format(state.Configs.value("OutputFolder"), FileWithoutSlash)
                 state.AllTempFiles.append(File)
