@@ -127,11 +127,23 @@ class CommandMixin:
             Meta = state.TrackMeta.get(x, {})
             TrackName = Select[4] if Meta.get("has_name") else ""
 
+            ## Pour le nom des fichiers extraits, à défaut de nom de piste on
+            ## utilise la langue : plus parlant qu'une fréquence ou des
+            ## dimensions. Les pièces jointes gardent leur propre nom.
+            if Meta and not Meta.get("has_name"):
+                NamePart = (
+                    Meta.get("language", "und")
+                    if Select[2] == "video-x-generic"
+                    else Select[5] or Meta.get("language", "und")
+                )
+            else:
+                NamePart = Select[4]
+
             ## Traitement des pistes vidéos, mise à jour de commandes
             if Select[2] == "video-x-generic":
                 # Ajout du fichier à la liste
                 FileWithoutSlash = "{}_video_{}.mkv".format(
-                    Select[0], Select[4].replace("/", "-")
+                    Select[0], NamePart.replace("/", "-")
                 )
                 File = "{}/{}".format(state.Configs.value("OutputFolder"), FileWithoutSlash)
                 state.AllTempFiles.append(File)
@@ -159,7 +171,7 @@ class CommandMixin:
             elif Select[2] == "audio-x-generic":
                 # Ajout du fichier à la liste
                 FileWithoutSlash = "{}_audio_{}".format(
-                    Select[0], Select[4].replace("/", "-")
+                    Select[0], NamePart.replace("/", "-")
                 )
                 File = "{}/{}.{}".format(
                     state.Configs.value("OutputFolder"), FileWithoutSlash, Select[6]
@@ -243,7 +255,7 @@ class CommandMixin:
             ## Traitement des pistes sous titres
             elif Select[2] == "text-x-generic":
                 FileWithoutSlash = "{}_subtitles_{}".format(
-                    Select[0], Select[4].replace("/", "-")
+                    Select[0], NamePart.replace("/", "-")
                 )
 
                 # Dans le cas de sous titres de fichiers sub
@@ -292,7 +304,7 @@ class CommandMixin:
 
                         # Différence de nom entre la langue de tesseract et celle de mkvalidator
                         SubConvert.append(
-                            [Select[0], Select[4], Select[5].replace("fre", "fra")]
+                            [Select[0], NamePart, Select[5].replace("fre", "fra")]
                         )
 
                     # Dans le cas ou il n'y a pas de conversion, maj de commande
@@ -369,7 +381,7 @@ class CommandMixin:
 
                             # Différence de nom entre la langue de tesseract et celle de mkvalidator
                             SubConvert.append(
-                                [Select[0], Select[4], Select[5].replace("fre", "fra")]
+                                [Select[0], NamePart, Select[5].replace("fre", "fra")]
                             )
 
                         # Si pas de conversion srt
@@ -394,7 +406,7 @@ class CommandMixin:
                         SupConvert.append(
                             [
                                 Select[0],
-                                Select[4],
+                                NamePart,
                                 "{0}/{1}.{2[6]}".format(
                                     state.Configs.value("OutputFolder"),
                                     FileWithoutSlash,
@@ -502,7 +514,7 @@ class CommandMixin:
             else:
                 # Ajout du fichier à la liste
                 FileWithoutSlash = "{}_{}".format(
-                    Select[0], Select[4].replace("/", "-")
+                    Select[0], NamePart.replace("/", "-")
                 )
                 File = "{}/{}".format(state.Configs.value("OutputFolder"), FileWithoutSlash)
                 state.AllTempFiles.append(File)
