@@ -2322,8 +2322,8 @@ Liste des fichiers :
     </message>
     <message>
         <location filename="../ui_MKVExtractorQt6.ui" line="1433"/>
-        <source>Display information about MKV Extractor Qt5.</source>
-        <translation>Ouvre une fenêtre d&apos;information sur MKV Extractor Qt5.</translation>
+        <source>Display information about MKV Extractor Qt6.</source>
+        <translation>Ouvre une fenêtre d&apos;information sur MKV Extractor Qt6.</translation>
     </message>
     <message>
         <location filename="../ui_MKVExtractorQt6.ui" line="1453"/>
