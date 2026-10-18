@@ -1,7 +1,7 @@
 #!/bin/bash
 # Builds a .deb straight from this repository.
 #
-#   sudo apt install pyside6-tools qt6-l10n-tools dpkg-dev
+#   sudo apt install pyside6-tools qt6-l10n-tools dpkg-dev git
 #   ./packaging/build-deb.sh
 #
 # Writes generated files into the working tree, so build from a copy if that
@@ -16,7 +16,14 @@ REPO="$(cd "$(dirname "$0")/.."; pwd)"
 VERSION="${VERSION:-26.04.29d+fork1}"
 MAINTAINER="${MAINTAINER:-mskpluk <mskpluk@users.noreply.github.com>}"
 # Same commit in, same package out: rcc embeds file timestamps, so pin them
-SOURCE_DATE_EPOCH="${SOURCE_DATE_EPOCH:-$(git -C "${REPO}" log -1 --format=%ct 2>/dev/null || date +%s)}"
+if [[ -z "${SOURCE_DATE_EPOCH:-}" ]]; then
+    if SOURCE_DATE_EPOCH="$(git -C "${REPO}" log -1 --format=%ct 2>/dev/null)" && [[ -n "${SOURCE_DATE_EPOCH}" ]]; then
+        echo "Timestamps pinned to the last commit (${SOURCE_DATE_EPOCH})."
+    else
+        SOURCE_DATE_EPOCH="$(date +%s)"
+        echo "No git here and no SOURCE_DATE_EPOCH set: this build will not be reproducible." >&2
+    fi
+fi
 export SOURCE_DATE_EPOCH
 
 BUILD="$(mktemp -d)"
