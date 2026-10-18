@@ -39,7 +39,7 @@ done
 ### The tree that gets installed
 APP="${PKG}/usr/share/mkv-extractor-qt6"
 install -d "${PKG}/usr/bin" "${APP}/Languages" "${APP}/QFileDialogCustom" "${APP}/WhatsUp" \
-           "${APP}/icons" "${APP}/img" "${PKG}/usr/share/applications" \
+           "${PKG}/usr/share/applications" \
            "${PKG}/usr/share/icons/hicolor/256x256/apps" "${PKG}/usr/share/doc/mkv-extractor-qt6" \
            "${PKG}/usr/share/man/man1" "${PKG}/usr/share/man/fr/man1" "${PKG}/DEBIAN"
 
@@ -50,16 +50,17 @@ install -m 644 "${BUILD}/MKVRessources_rc.py" "${BUILD}/ui_MKVExtractorQt6.py" "
 install -m 644 Languages/*.qm "${APP}/Languages/"
 install -m 644 QFileDialogCustom/QFileDialogCustom.py QFileDialogCustom/*.qm "${APP}/QFileDialogCustom/"
 install -m 644 WhatsUp/WhatsUp.py "${APP}/WhatsUp/"
-install -m 644 icons/* "${APP}/icons/"
-install -m 644 img/* "${APP}/img/"
 ln -s /usr/share/mkv-extractor-qt6/MKVExtractorQt6.py "${PKG}/usr/bin/mkv-extractor-qt6"
 
 install -m 644 mkv-extractor-qt6.desktop "${PKG}/usr/share/applications/"
 install -m 644 icons/mkv-extractor-qt6.png icons/mkv-extractor-qt6.webp \
                "${PKG}/usr/share/icons/hicolor/256x256/apps/"
-install -m 644 man/mkv-extractor-qt6.1.gz "${PKG}/usr/share/man/man1/"
-install -m 644 man/mkv-extractor-qt6.fr.1.gz "${PKG}/usr/share/man/fr/man1/mkv-extractor-qt6.1.gz"
+gzip -9nc man/mkv-extractor-qt6.1 > "${PKG}/usr/share/man/man1/mkv-extractor-qt6.1.gz"
+gzip -9nc man/mkv-extractor-qt6.fr.1 > "${PKG}/usr/share/man/fr/man1/mkv-extractor-qt6.1.gz"
+chmod 644 "${PKG}/usr/share/man/man1/mkv-extractor-qt6.1.gz" \
+          "${PKG}/usr/share/man/fr/man1/mkv-extractor-qt6.1.gz"
 install -m 644 LICENSE "${PKG}/usr/share/doc/mkv-extractor-qt6/copyright"
+install -m 644 "${REPO}/packaging/AUTHORS" "${PKG}/usr/share/doc/mkv-extractor-qt6/AUTHORS"
 
 ### Changelog, shown by the program itself under "What's new"
 sed -e "s/@VERSION@/${VERSION}/" -e "s/@MAINTAINER@/${MAINTAINER}/" \
@@ -70,7 +71,9 @@ chmod 644 "${PKG}/usr/share/doc/mkv-extractor-qt6/changelog.Debian.gz"
 ### Package metadata
 sed -e "s/@VERSION@/${VERSION}/" -e "s/@MAINTAINER@/${MAINTAINER}/" \
     -e "s/@SIZE@/$(du -ks "${PKG}" | cut -f1)/" "${REPO}/packaging/control.in" > "${PKG}/DEBIAN/control"
-install -m 755 "${REPO}/packaging/postrm" "${PKG}/DEBIAN/postrm"
+for script in postinst prerm postrm; do
+    install -m 755 "${REPO}/packaging/${script}" "${PKG}/DEBIAN/${script}"
+done
 
 (cd "${PKG}" && find . -type f ! -path './DEBIAN/*' -printf '%P\0' | sort -z | xargs -0 md5sum > DEBIAN/md5sums)
 
