@@ -13,7 +13,7 @@
 set -euo pipefail
 
 REPO="$(cd "$(dirname "$0")/.."; pwd)"
-VERSION="${VERSION:-26.04.29c+fork1}"
+VERSION="${VERSION:-26.04.29d+fork1}"
 MAINTAINER="${MAINTAINER:-mskpluk <mskpluk@users.noreply.github.com>}"
 BUILD="$(mktemp -d)"
 PKG="${BUILD}/mkv-extractor-qt6"
