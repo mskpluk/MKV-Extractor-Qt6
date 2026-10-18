@@ -15,6 +15,10 @@ set -euo pipefail
 REPO="$(cd "$(dirname "$0")/.."; pwd)"
 VERSION="${VERSION:-26.04.29d+fork1}"
 MAINTAINER="${MAINTAINER:-mskpluk <mskpluk@users.noreply.github.com>}"
+# Same commit in, same package out: rcc embeds file timestamps, so pin them
+SOURCE_DATE_EPOCH="${SOURCE_DATE_EPOCH:-$(git -C "${REPO}" log -1 --format=%ct 2>/dev/null || date +%s)}"
+export SOURCE_DATE_EPOCH
+
 BUILD="$(mktemp -d)"
 PKG="${BUILD}/mkv-extractor-qt6"
 OUT="${OUT:-${REPO}/../mkv-extractor-qt6_${VERSION}_all.deb}"
@@ -64,7 +68,7 @@ install -m 644 "${REPO}/packaging/AUTHORS" "${PKG}/usr/share/doc/mkv-extractor-q
 
 ### Changelog, shown by the program itself under "What's new"
 sed -e "s/@VERSION@/${VERSION}/" -e "s/@MAINTAINER@/${MAINTAINER}/" \
-    -e "s/@DATE@/$(date -R)/" "${REPO}/packaging/changelog.in" | gzip -9n \
+    -e "s/@DATE@/$(date -R -u -d "@${SOURCE_DATE_EPOCH}")/" "${REPO}/packaging/changelog.in" | gzip -9n \
     > "${PKG}/usr/share/doc/mkv-extractor-qt6/changelog.Debian.gz"
 chmod 644 "${PKG}/usr/share/doc/mkv-extractor-qt6/changelog.Debian.gz"
 
@@ -76,6 +80,8 @@ for script in postinst prerm postrm; do
 done
 
 (cd "${PKG}" && find . -type f ! -path './DEBIAN/*' -printf '%P\0' | sort -z | xargs -0 md5sum > DEBIAN/md5sums)
+
+find "${PKG}" -exec touch -h -d "@${SOURCE_DATE_EPOCH}" {} +
 
 dpkg-deb --build --root-owner-group "${PKG}" "${OUT}"
 echo "Built ${OUT}"
