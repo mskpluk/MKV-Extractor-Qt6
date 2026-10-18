@@ -1,0 +1,24 @@
+Package: mkv-extractor-qt6
+Version: @VERSION@
+Architecture: all
+Maintainer: @MAINTAINER@
+XSBC-Original-Maintainer: Terence Belleguic <hizo@free.fr>
+Installed-Size: @SIZE@
+Depends: python3:any, python3-pyside6.qtcore, python3-pyside6.qtgui, python3-pyside6.qtwidgets, mkvtoolnix
+Recommends: ffmpeg, python3-psutil
+Suggests: tesseract-ocr
+Section: video
+Priority: optional
+Homepage: https://github.com/mskpluk/MKV-Extractor-Qt6
+Description: Graphical mkv demultiplexer
+ Extracts, converts and remuxes the tracks of Matroska files.
+ .
+ Features:
+  * DTS to AC3 conversion via ffmpeg
+  * Automatic conversion from SUB to SRT via tesseract
+  * Read and extract joined files
+  * Extract and remux tracks
+ .
+ This is an unofficial build of Terence Belleguic's MKV Extractor Qt6,
+ carrying the fixes listed in CHANGELOG.md. The upstream packages cannot
+ be installed on Debian or Ubuntu because of a wrong dependency name.

@@ -1,0 +1,4 @@
+*.qm
+__pycache__/
+ui_MKVExtractorQt6.py
+MKVRessources_rc.py

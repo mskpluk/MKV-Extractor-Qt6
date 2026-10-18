@@ -1,0 +1,17 @@
+mkv-extractor-qt6 (@VERSION@) unstable; urgency=medium
+
+  Unofficial build from the fork at https://github.com/mskpluk/MKV-Extractor-Qt6
+
+  * Extracting an audio track with no name works again. Execute used to do
+    nothing at all on most releases, which carry a single unnamed track.
+  * Remux works again: every path through it died on a missing import.
+  * Remux no longer writes the table placeholder as the track name, and the
+    video track keeps its language.
+  * Extracted files are named after the language of the track, and an
+    extracted video gets the extension of its codec instead of .mkv.
+  * The program has its icon back in the menu.
+  * The About entry and six translations no longer call this Qt5.
+  * The package depends on the PySide6 packages that actually exist, so it
+    installs on Debian and Ubuntu.
+
+ -- @MAINTAINER@  @DATE@
