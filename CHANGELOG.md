@@ -40,6 +40,8 @@ Nothing else is changed: same program, same interface, same way of working.
 
 ### Appearance and packaging
 
+- **The About window shows the version of the code it is running.** It had read
+  26.04.29a since April, through two upstream package builds that never touched it.
 - **The program has its icon back.** The desktop entry pointed at a directory where
   no icon is installed, so menus had nothing to show.
 - **The button offering this program is spelled correctly.** It read
