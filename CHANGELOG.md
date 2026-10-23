@@ -15,6 +15,10 @@ Nothing else is changed: same program, same interface, same way of working.
   produce `1_audio_48000.eac3`, named after the sampling frequency that the table
   shows as a placeholder. It now produces `1_audio_pol.eac3`, which tells you which
   track you are looking at. Named tracks keep their name, attachments keep theirs.
+- **A forced subtitle track says so in its file name.** It comes out as
+  `2_subtitles_pol_forced.srt`, which is the difference you actually look for when a
+  film carries two Polish tracks. A track whose name already says it is forced is
+  left alone.
 - **An extracted video track no longer pretends to be a Matroska file.** It was
   always called `.mkv`, although what is written is a raw stream. It now gets the
   extension of its codec, `0_video_eng.h264` for H.264.
@@ -28,6 +32,9 @@ Nothing else is changed: same program, same interface, same way of working.
 - **Placeholder names are no longer written into the file.** Remuxing used to store
   the table placeholder as the real track name, so tracks came out of it called
   `48000` or `640x360`. A track that had no name keeps having none.
+- **Track flags survive a remux.** A forced subtitle track came out of a remux no
+  longer forced, and every track came out marked as the default one — two default
+  subtitle tracks at once, so players picked whichever they felt like.
 - **The video track keeps its language.** An English video track came out of a remux
   as undefined, because the language was never passed on.
 

@@ -316,6 +316,8 @@ class TracksMixin:
             state.TrackMeta[x] = {
                 "has_name": "track_name" in Track["properties"],
                 "language": Track["properties"].get("language", "und"),
+                "forced": Track["properties"].get("forced_track", False),
+                "default": Track["properties"].get("default_track", False),
             }
 
             ## Ajout de la piste au dico
