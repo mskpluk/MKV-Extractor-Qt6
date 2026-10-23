@@ -139,9 +139,11 @@ class CommandMixin:
             else:
                 NamePart = Select[4]
 
-            ## Une piste forcée se reconnaît dans le nom du fichier extrait
-            if Meta.get("forced") and "forced" not in NamePart.lower():
-                NamePart = "{}_forced".format(NamePart)
+            ## Ce qui distingue la piste finit dans le nom du fichier : forcée,
+            ## sourds et malentendants, commentaire... sauf si le nom le dit déjà.
+            for Marker in Meta.get("markers", []):
+                if Marker not in NamePart.lower():
+                    NamePart = "{}_{}".format(NamePart, Marker)
 
             ## Sans ces drapeaux mkvmerge remet les siens : la piste forcée
             ## cesse de l'être et toutes les pistes deviennent celle par défaut.

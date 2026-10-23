@@ -330,7 +330,26 @@ class TracksMixin:
                 if Track["properties"].get(Prop, False):
                     Extra.append((Option, "yes"))
 
+            ## Ce qui distingue deux pistes de même langue se retrouve dans le
+            ## nom du fichier extrait.
+            Markers = []
+
+            for Prop, Marker in (
+                ("forced_track", "forced"),
+                ("flag_hearing_impaired", "sdh"),
+                ("flag_visual_impaired", "vi"),
+                ("flag_text_descriptions", "textdesc"),
+                ("flag_original", "original"),
+                ("flag_commentary", "commentary"),
+            ):
+                if Track["properties"].get(Prop, False):
+                    Markers.append(Marker)
+
+            if Track["properties"].get("enabled_track", True) is False:
+                Markers.append("disabled")
+
             state.TrackMeta[x] = {
+                "markers": Markers,
                 "has_name": "track_name" in Track["properties"],
                 "language": Track["properties"].get("language", "und"),
                 "forced": Track["properties"].get("forced_track", False),

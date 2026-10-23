@@ -15,10 +15,12 @@ Nothing else is changed: same program, same interface, same way of working.
   produce `1_audio_48000.eac3`, named after the sampling frequency that the table
   shows as a placeholder. It now produces `1_audio_pol.eac3`, which tells you which
   track you are looking at. Named tracks keep their name, attachments keep theirs.
-- **A forced subtitle track says so in its file name.** It comes out as
-  `2_subtitles_pol_forced.srt`, which is the difference you actually look for when a
-  film carries two Polish tracks. A track whose name already says it is forced is
-  left alone.
+- **What distinguishes a track is in the name of the extracted file.** Two subtitle
+  tracks in the same language used to come out as two files told apart only by their
+  number. They now read `2_subtitles_pol_forced.srt` and
+  `3_subtitles_pol_sdh.srt` — forced, hearing impaired, visually impaired, text
+  descriptions, original language, commentary and disabled all show up, for audio
+  tracks as well. A track whose own name already says it is left alone.
 - **An extracted video track no longer pretends to be a Matroska file.** It was
   always called `.mkv`, although what is written is a raw stream. It now gets the
   extension of its codec, `0_video_eng.h264` for H.264.
