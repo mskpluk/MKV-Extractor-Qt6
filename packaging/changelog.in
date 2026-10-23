@@ -5,8 +5,14 @@ mkv-extractor-qt6 (@VERSION@) unstable; urgency=medium
   * Extracting an audio track with no name works again. Execute used to do
     nothing at all on most releases, which carry a single unnamed track.
   * Remux works again: every path through it died on a missing import.
-  * Remux no longer writes the table placeholder as the track name, and the
-    video track keeps its language.
+  * Remux no longer writes the table placeholder as the track name, keeps the
+    video language, and keeps every flag a track came with: forced, default,
+    disabled, hearing impaired, visually impaired, text descriptions, original
+    language and commentary.
+  * The name of an extracted file says what distinguishes the track:
+    forced, hearing impaired, commentary and the rest of the flags.
+  * The About window says 26.04.29d, which is the code it is actually
+    running; it had been left at 26.04.29a since April.
   * Extracted files are named after the language of the track, and an
     extracted video gets the extension of its codec instead of .mkv.
   * The program has its icon back in the menu.

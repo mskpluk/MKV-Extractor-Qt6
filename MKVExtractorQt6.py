@@ -2746,7 +2746,7 @@ class MKVExtractorQt6(SoftwareMixin, MKVToolsMixin, TracksMixin, CommandMixin, W
 if __name__ == "__main__":
     ### Informations sur l'application'
     app = QApplication(sys.argv)
-    app.setApplicationVersion("26.04.29a")
+    app.setApplicationVersion("26.04.29d")
     app.setApplicationName("MKV Extractor Qt6")
 
     ### Gestion de l'emplacement du logiciel

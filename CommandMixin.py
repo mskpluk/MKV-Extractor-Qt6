@@ -139,6 +139,27 @@ class CommandMixin:
             else:
                 NamePart = Select[4]
 
+            ## Ce qui distingue la piste finit dans le nom du fichier : forcée,
+            ## sourds et malentendants, commentaire... sauf si le nom le dit déjà.
+            for Marker in Meta.get("markers", []):
+                if Marker not in NamePart.lower():
+                    NamePart = "{}_{}".format(NamePart, Marker)
+
+            ## Sans ces drapeaux mkvmerge remet les siens : la piste forcée
+            ## cesse de l'être et toutes les pistes deviennent celle par défaut.
+            if Meta:
+                Flags = [
+                    "--forced-track",
+                    "0:{}".format("yes" if Meta.get("forced") else "no"),
+                    "--default-track",
+                    "0:{}".format("yes" if Meta.get("default") else "no"),
+                ]
+
+                for Option, Value in Meta.get("extra", []):
+                    Flags.extend([Option, "0:{}".format(Value)])
+            else:
+                Flags = []
+
             ## Traitement des pistes vidéos, mise à jour de commandes
             if Select[2] == "video-x-generic":
                 # Ajout du fichier à la liste
@@ -159,6 +180,7 @@ class CommandMixin:
                 # Code d'encapsulage
                 mkvmerge.extend(
                     [
+                        *Flags,
                         "--track-name",
                         "0:{}".format(TrackName),
                         "--language",
@@ -236,6 +258,7 @@ class CommandMixin:
 
                 # Code d'encapsulage
                 Temp = [
+                    *Flags,
                     "--track-name",
                     "0:{}".format(TrackName),
                     "--language",
@@ -296,6 +319,7 @@ class CommandMixin:
                         mkvmerge_files.append(SRT)
                         mkvmerge.extend(
                             [
+                                *Flags,
                                 "--track-name",
                                 "0:{}".format(TrackName),
                                 "--language",
@@ -321,6 +345,7 @@ class CommandMixin:
                         )
                         mkvmerge.extend(
                             [
+                                *Flags,
                                 "--track-name",
                                 "0:{}".format(TrackName),
                                 "--language",
@@ -372,6 +397,7 @@ class CommandMixin:
                             # Code d'encapsulage du srt
                             mkvmerge.extend(
                                 [
+                                    *Flags,
                                     "--track-name",
                                     "0:{}".format(TrackName),
                                     "--language",
@@ -396,6 +422,7 @@ class CommandMixin:
                             # Code d'encapsulage
                             mkvmerge.extend(
                                 [
+                                    *Flags,
                                     "--track-name",
                                     "0:{}".format(TrackName),
                                     "--language",
@@ -425,6 +452,7 @@ class CommandMixin:
                         mkvmerge_files.append(SUP)
                         mkvmerge.extend(
                             [
+                                *Flags,
                                 "--track-name",
                                 "0:{}".format(TrackName),
                                 "--language",
@@ -450,6 +478,7 @@ class CommandMixin:
                     # Code d'encapsulage
                     mkvmerge.extend(
                         [
+                            *Flags,
                             "--track-name",
                             "0:{}".format(TrackName),
                             "--language",
