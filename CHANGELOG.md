@@ -55,9 +55,12 @@ Nothing else is changed: same program, same interface, same way of working.
   a source package; Debian and Ubuntu ship PySide6 one module per package. The same
   wrong name reached users through the AppImage error message.
 
-### Still open
+### Where upstream stands
 
-The `.deb` packages published upstream declare `Depends: python3-pyside6` and
-therefore install on no Debian or Ubuntu release. That file is not part of this
-repository, so it cannot be fixed here; the three package names to use instead are
-`python3-pyside6.qtcore`, `python3-pyside6.qtgui` and `python3-pyside6.qtwidgets`.
+Upstream picked up two of these fixes in 26.10.18a and, in the packages of that
+release, finally depends on the PySide6 packages that exist — so the official `.deb`
+installs again, and the reason this fork started is gone.
+
+Everything else above is still only here: the menu icon, the version in the About
+window, the spelling of the button, the Qt6 wording in six translations, the file
+names, and all of the Remux behaviour. This fork stays on the 26.04.29 code base.
