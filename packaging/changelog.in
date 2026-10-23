@@ -6,7 +6,9 @@ mkv-extractor-qt6 (@VERSION@) unstable; urgency=medium
     nothing at all on most releases, which carry a single unnamed track.
   * Remux works again: every path through it died on a missing import.
   * Remux no longer writes the table placeholder as the track name, keeps the
-    video language, and keeps the forced and default flags of every track.
+    video language, and keeps every flag a track came with: forced, default,
+    disabled, hearing impaired, visually impaired, text descriptions, original
+    language and commentary.
   * A forced subtitle track says so in the name of the extracted file.
   * The About window says 26.04.29d, which is the code it is actually
     running; it had been left at 26.04.29a since April.

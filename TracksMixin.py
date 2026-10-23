@@ -313,11 +313,29 @@ class TracksMixin:
 
             ## Le tableau affiche une valeur de remplacement quand la piste n'a
             ## pas de nom ; il ne faut pas l'écrire dans le fichier de sortie.
+            ## Les drapeaux qui sortent de l'ordinaire : on ne les réécrira que
+            ## dans ce cas, pour ne pas allonger la commande sans raison.
+            Extra = []
+
+            if Track["properties"].get("enabled_track", True) is False:
+                Extra.append(("--track-enabled-flag", "no"))
+
+            for Prop, Option in (
+                ("flag_hearing_impaired", "--hearing-impaired-flag"),
+                ("flag_visual_impaired", "--visual-impaired-flag"),
+                ("flag_text_descriptions", "--text-descriptions-flag"),
+                ("flag_original", "--original-flag"),
+                ("flag_commentary", "--commentary-flag"),
+            ):
+                if Track["properties"].get(Prop, False):
+                    Extra.append((Option, "yes"))
+
             state.TrackMeta[x] = {
                 "has_name": "track_name" in Track["properties"],
                 "language": Track["properties"].get("language", "und"),
                 "forced": Track["properties"].get("forced_track", False),
                 "default": Track["properties"].get("default_track", False),
+                "extra": Extra,
             }
 
             ## Ajout de la piste au dico

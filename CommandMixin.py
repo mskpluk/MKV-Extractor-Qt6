@@ -152,6 +152,9 @@ class CommandMixin:
                     "--default-track",
                     "0:{}".format("yes" if Meta.get("default") else "no"),
                 ]
+
+                for Option, Value in Meta.get("extra", []):
+                    Flags.extend([Option, "0:{}".format(Value)])
             else:
                 Flags = []
 

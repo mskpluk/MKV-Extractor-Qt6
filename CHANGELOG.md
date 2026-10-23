@@ -34,7 +34,9 @@ Nothing else is changed: same program, same interface, same way of working.
   `48000` or `640x360`. A track that had no name keeps having none.
 - **Track flags survive a remux.** A forced subtitle track came out of a remux no
   longer forced, and every track came out marked as the default one — two default
-  subtitle tracks at once, so players picked whichever they felt like.
+  subtitle tracks at once, so players picked whichever they felt like. The same goes
+  for the rest of them: disabled, hearing impaired, visually impaired, text
+  descriptions, original language and commentary.
 - **The video track keeps its language.** An English video track came out of a remux
   as undefined, because the language was never passed on.
 

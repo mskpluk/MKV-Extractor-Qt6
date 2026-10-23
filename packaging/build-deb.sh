@@ -13,7 +13,7 @@
 set -euo pipefail
 
 REPO="$(cd "$(dirname "$0")/.."; pwd)"
-VERSION="${VERSION:-26.04.29d+fork3}"
+VERSION="${VERSION:-26.04.29d+fork2}"
 MAINTAINER="${MAINTAINER:-mskpluk <mskpluk@users.noreply.github.com>}"
 # Same commit in, same package out: rcc embeds file timestamps, so pin them
 if [[ -z "${SOURCE_DATE_EPOCH:-}" ]]; then
